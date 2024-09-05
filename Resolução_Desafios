@@ -1,0 +1,122 @@
+// Desafio 1 
+ 
+# variáveis
+indice = 13
+soma = 0
+k = 0
+
+# Laço de repetição
+while k < indice:
+    k += 1  # Incrementa k em 1
+    soma += k  # Adiciona k à soma
+
+# resultado
+print("O valor da variável SOMA é:", soma)
+
+O valor da variável SOMA é: 91
+
+// Desafio 2
+
+def fibonacci(n):
+    sequencia = [0, 1]
+    while sequencia[-1] < n:
+        sequencia.append(sequencia[-1] + sequencia[-2])
+    return sequencia
+
+def verifica_numero(n):
+    sequencia = fibonacci(n)
+    if n in sequencia:
+        return f"O número {n} pertence à sequência de Fibonacci."
+    else:
+        return f"O número {n} não pertence à sequência de Fibonacci."
+
+# Faz a leitura de um número
+n = int(input("Informe um número: "))
+
+# Verifica se o número pertence à sequência de Fibonacci
+print(verifica_numero(n))
+
+// Desafio 3
+
+import json
+# Carregua os dados do faturamento mensal de um arquivo JSON
+with open('faturamento.json') as f:
+    dados = json.load(f)
+
+# Inicializa as variáveis para armazenar os resultados
+menor_faturamento = float('inf')
+maior_faturamento = 0
+dias_acima_media = 0
+soma_faturamento = 0
+dias_contados = 0
+
+# Itera sobre os dias do mês
+for dia, faturamento in dados.items():
+    if faturamento > 0:  # Ignora dias sem faturamento
+        soma_faturamento += faturamento
+        dias_contados += 1
+        if faturamento < menor_faturamento:
+            menor_faturamento = faturamento
+        if faturamento > maior_faturamento:
+            maior_faturamento = faturamento
+
+# Calculo da média mensal
+media_mensal = soma_faturamento / dias_contados
+
+# Contabilização dos dias acima da média
+for dia, faturamento in dados.items():
+    if faturamento > media_mensal:
+        dias_acima_media += 1
+
+# Imprime os resultados
+print("Menor valor de faturamento:", menor_faturamento)
+print("Maior valor de faturamento:", maior_faturamento)
+print("Número de dias acima da média:", dias_acima_media)
+
+// Arquivo JSON 
+{
+    "dia 1": 1000,
+    "dia 2": 1200,
+    "dia 3": 0,
+    ...
+}
+
+// Desafio 4
+
+# valores de faturamento mensal por estado
+faturamento = {
+    "SP": 67836.43,
+    "RJ": 36678.66,
+    "MG": 29229.88,
+    "ES": 27165.48,
+    "Outros": 19849.53
+}
+
+# Calcula o valor total mensal
+total_mensal = sum(faturamento.values())
+
+# Calcula o percentual de representação de cada estado
+percentuais = {}
+for estado, valor in faturamento.items():
+    percentual = (valor / total_mensal) * 100
+    percentuais[estado] = round(percentual, 2)
+
+# Imprime os resultados
+print("Percentual de representação de cada estado:")
+for estado, percentual in percentuais.items():
+    print(f"{estado}: {percentual}%")
+
+// Desafio 5
+
+# faz a leitura da string 
+string_original = input("Informe a string a ser invertida: ")
+
+# Cria uma string vazia para armazenar a string invertida
+string_invertida = ""
+
+# Itera sobre a string original de trás para frente
+for i in range(len(string_original) - 1, -1, -1):
+    string_invertida += string_original[i]
+
+# Imprime a string invertida
+print("String invertida:", string_invertida)
